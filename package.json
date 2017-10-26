@@ -7,8 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "utilbase": "git@github.com:grokible/utilbase.git",
-    "jaybird": "git@github.com:grokible/jaybird.git"
+    "utilbase": "git@github.com:grokible/utilbase.git"
   },
   "author": "Roger Bush <roger@grokible.com>",
   "license": "ISC"
