@@ -222,7 +222,10 @@ Loader.prototype.loadMidwareByMeta = function (midwareDescriptors) {
 }
 
 Loader.prototype.loadMidware = function (midwareFilename) {
-    var path = `../../midware/${ midwareFilename }`;
+    // TODO - HARDCODED PATH:
+//    var path = `../../midware/${ midwareFilename }`;
+    var path = `../../../app/midware/${ midwareFilename }`;
+
     var loadedMidwareModule = this._require (path);
     var meta = loadedMidwareModule.meta ();
 
