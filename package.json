@@ -1,0 +1,15 @@
+{
+  "name": "jaybird",
+  "version": "1.0.0",
+  "description": "Serverkit Koa Utility Library",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "utilbase": "git@github.com:grokible/utilbase.git",
+    "jaybird": "git@github.com:grokible/jaybird.git"
+  },
+  "author": "Roger Bush <roger@grokible.com>",
+  "license": "ISC"
+}
