@@ -184,7 +184,10 @@ Loader.prototype._addModule = function (meta, moduleInstance, oProps) {
 
 // RouterModuleInstance is just a Koa Router (instance) with static meta ()
 Loader.prototype.loadRouter = function (filename) {
-    var filepath = `../../midware/${ filename }`;
+    // TODO - HARDCODED PATH
+    // var filepath = `../../midware/${ filename }`;
+    var filepath = `../../../app/midware/${ filename }`;
+
     var RouterModule = this._require (filepath);
 
     var meta = RouterModule.meta ();
