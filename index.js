@@ -12,4 +12,10 @@ Serverkit.Service = require ('./service');
 Serverkit.Services = require ('./services');
 Serverkit.WrappedLogger = require ('./wrappedLogger');
 
+ServerKit.Test = {};
+ServerKit.Test.MockLogger = require ('./test/mockLogger');
+
+ServerKit.Impl = {};
+ServerKit.Impl.Loader = require ('./impl/loader');
+
 module.exports = Serverkit;
