@@ -1,2 +1,3 @@
-# serverkit
-Wrapper around Koa for http server
+// server dir
+
+This directory is for server common services.
