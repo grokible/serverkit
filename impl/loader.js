@@ -15,12 +15,12 @@ var validOpt = { max: undefined };
 var dtag = 'gga:server:loader';
 var debug = Debug (dtag);
 
-var Loader = ctor (function Loader (parentServicesObj) {
+var Loader = ctor (function Loader (services) {
     this.meta = {};
-    this.parentServicesObj = parentServicesObj;  // parent services object
-    this.dirPath = parentServicesObj.getProperty ('servicesDir');
-    this.dirName = parentServicesObj.getProperty ('servicesDirname');
-    this.koaApp = parentServicesObj.getProperty ('koaApp');
+    this.services = services;  // parent services object
+    this.dirPath = services.getProperty ('servicesDir');
+    this.dirName = services.getProperty ('servicesDirname');
+    this.koaApp = services.getProperty ('koaApp');
 
     this.modules = {};
     this.routes = {};
@@ -103,7 +103,7 @@ Loader.prototype.loadService = function (svcSpec) {
 
         Module = this._require (path);
         var meta = Module.meta ();
-        var serviceInstance = Module (this.parentServicesObj);
+        var serviceInstance = Module (this.services);
         var props = { file: filename };
 
         this.addService (meta, serviceInstance, props);
@@ -127,7 +127,7 @@ Loader.prototype.loadService = function (svcSpec) {
             deps: [],
         };
 
-        var restServiceInstance = RestService (this.parentServicesObj, opt);
+        var restServiceInstance = RestService (this.services, opt);
 
         this.addService (meta, restServiceInstance, props);
     }
@@ -184,15 +184,14 @@ Loader.prototype._addModule = function (meta, moduleInstance, oProps) {
 
 // RouterModuleInstance is just a Koa Router (instance) with static meta ()
 Loader.prototype.loadRouter = function (filename) {
-    // TODO - HARDCODED PATH
-    // var filepath = `../../midware/${ filename }`;
-    var filepath = `../../../app/midware/${ filename }`;
+    var rootDir = this.services.getRootDir ();
+    var filepath = `${ rootDir }/app/midware/${ filename }`;
 
     var RouterModule = this._require (filepath);
 
     var meta = RouterModule.meta ();
     var opt = { name: meta.name, prefix: meta.prefix };
-    var routerInstance = RouterModule (this.parentServicesObj, opt);
+    var routerInstance = RouterModule (this.services, opt);
 
     var rv = this._addModule (meta, routerInstance);
 
@@ -225,9 +224,8 @@ Loader.prototype.loadMidwareByMeta = function (midwareDescriptors) {
 }
 
 Loader.prototype.loadMidware = function (midwareFilename) {
-    // TODO - HARDCODED PATH:
-//    var path = `../../midware/${ midwareFilename }`;
-    var path = `../../../app/midware/${ midwareFilename }`;
+    var rootDir = this.services.getRootDir ();
+    var path = `${ rootDir }/app/midware/${ midwareFilename }`;
 
     var loadedMidwareModule = this._require (path);
     var meta = loadedMidwareModule.meta ();

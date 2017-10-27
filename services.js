@@ -62,7 +62,6 @@ var Services = ctor (function Services (opt) {
 
     this.loader = Loader (this);
 
-
     var loadServiceMeta = options.get ('loadMeta.services');
     if (loadServiceMeta)
         this.loader.loadServicesByMeta (loadServiceMeta);
@@ -94,6 +93,10 @@ Services.prototype.getKoaApp = function () {
 
 Services.prototype.getSecurityDir = function () {
     return this.securityDir;
+}
+
+Services.prototype.getRootDir = function () {
+    return this.cfg.rootDir;
 }
 
 Services.prototype.getConfig = function () {

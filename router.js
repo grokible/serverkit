@@ -1,4 +1,6 @@
 
+var inherits = require ('inherits');
+
 var UtilBase = require ('utilbase'),
     ctor = UtilBase.Oop.ctor,
     Opt = UtilBase.Opt;
@@ -6,8 +8,7 @@ var UtilBase = require ('utilbase'),
 var Jaybird = require ('jaybird'),
     JbCompiler = Jaybird.Compiler;
 
-var inherits = require ('inherits'),
-    KoaRouter = require ('koa-router');
+var KoaRouter = require ('koa-router');
 
 var validOpt = {
     name: undefined,   // required
@@ -34,8 +35,10 @@ var Router = ctor (function Router (services, opt) {
             throw Error (`Schema supplied but no driver supplied`);
         this.driver = driver;
         this.schema.collection.router = this;
-        this.compiler =
-            JbCompiler ({ schema: this.schema, driver: driver });
+
+        var rootDir = this.services.getRootDir ();
+        this.compiler = JbCompiler ({ schema: this.schema, driver: driver,
+            rootDir: rootDir });
     }
 });
 
@@ -49,6 +52,10 @@ Router.prototype.getPrefix = function () {
 
 Router.prototype.getName = function () {
     return this.name;
+}
+
+Router.prototype.getServices = function () {
+    return this.services;
 }
 
 Router.prototype.getServiceName = function () {

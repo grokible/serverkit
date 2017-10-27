@@ -7,7 +7,17 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "utilbase": "git@github.com:grokible/utilbase.git"
+    "utilbase": "git@github.com:grokible/utilbase.git",
+    "jaybird": "git@github.com:grokible/jaybird.git",
+    "inherits": "^2.0.3",
+    "bunyan": "^1.8.10",
+    "debug": "^2.6.8",
+    "fs-extra": "^3.0.1",
+    "joi": "^10.5.0",
+    "koa-router": "^5.4.0",
+    "koa-passport": "^1.1.6",
+    "request-promise": "^4.2.1",
+    "request": "^2.81.0"
   },
   "author": "Roger Bush <roger@grokible.com>",
   "license": "ISC"
