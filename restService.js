@@ -28,7 +28,7 @@ var validOpt = {
 var RestService = ctor (function RestService (services, opt) {
     var options = Opt (validOpt, opt, true);
 
-    this.prefix = options.get ('prefix', true);
+    this.prefix = options.get ('prefix');
     this.host = options.get ('host');
     this.port = options.get ('port');
     this.isHttps = options.get ('https');   // if not, use http
@@ -43,7 +43,8 @@ inherits (RestService, Service);
 module.exports = RestService;
 
 RestService.prototype.url = function (path, oQuery) {
-    var wholePath = this.prefix + path;
+    var wholePath = this.prefix ? this.prefix + path : path;
+
     var opt = {
         protocol: this.isHttps ? 'https' : 'http',
     };
