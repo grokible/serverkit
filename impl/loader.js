@@ -191,7 +191,7 @@ Loader.prototype.loadRouter = function (filename) {
 
     var meta = RouterModule.meta ();
     var opt = { name: meta.name, prefix: meta.prefix };
-    var routerInstance = RouterModule (this.services, opt);
+    var routerInstance = new RouterModule (this.services, opt);
 
     var rv = this._addModule (meta, routerInstance);
 
