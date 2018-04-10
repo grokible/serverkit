@@ -1,8 +1,5 @@
 
-var inherits = require ('inherits');
-
 var UtilBase = require ('utilbase'),
-    ctor = UtilBase.Oop.ctor,
     Opt = UtilBase.Opt;
 
 var KoaRouter = require ('koa-router');
@@ -12,17 +9,17 @@ var validOpt = {
     prefix: undefined, // required
 };
 
-var Router = ctor (function Router (services, opt) {
-    var options = Opt (validOpt, opt);
+class Router {
+    constructor (services, opt) {
+        var options = Opt (validOpt, opt);
 
-    this.prefix = options.get ('prefix', true);
-    this.name = options.get ('name', true);
+        this.prefix = options.get ('prefix', true);
+        this.name = options.get ('name', true);
 
-    this.services = services;
-    this.koaRouter = KoaRouter ({ prefix: this.prefix });
-});
-
-// inherits (Router, Object);
+        this.services = services;
+        this.koaRouter = KoaRouter ({ prefix: this.prefix });
+    }
+}
 
 module.exports = Router;
 
