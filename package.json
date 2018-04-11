@@ -8,7 +8,6 @@
   },
   "dependencies": {
     "utilbase": "git@github.com:grokible/utilbase.git",
-    "jaybird": "git@github.com:grokible/jaybird.git",
     "inherits": "^2.0.3",
     "bunyan": "^1.8.10",
     "debug": "^2.6.8",
